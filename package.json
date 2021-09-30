@@ -11,7 +11,8 @@
     "build": "tsc --build",
     "lint:fix": "prettier --write 'src/*.ts' && tslint --fix --config tslint.json --project tsconfig.json",
     "lint": "tslint --config tslint.json --project tsconfig.json",
-    "test": "mocha --exit"
+    "test": "mocha --exit",
+    "postinstall": "tsc --outDir ./build"
   },
   "files": [
     "dist/",
