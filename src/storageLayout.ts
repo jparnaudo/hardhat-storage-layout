@@ -48,15 +48,17 @@ export class StorageLayout {
         }
 
         const contract: Row = { name: contractName, stateVariables: [] };
-        for (const stateVariable of artifactJsonABI.output.contracts[
-          sourceName
-        ][contractName].storageLayout.storage) {
-          contract.stateVariables.push({
-            name: stateVariable.label,
-            slot: stateVariable.slot,
-            offset: stateVariable.offset,
-            type: stateVariable.type
-          });
+        const storageLayout = artifactJsonABI.output.contracts[sourceName][contractName].storageLayout;
+        console.log("storageLayout", storageLayout);
+        if(storageLayout){
+          for (const stateVariable of storageLayout.storage) {
+            contract.stateVariables.push({
+              name: stateVariable.label,
+              slot: stateVariable.slot,
+              offset: stateVariable.offset,
+              type: stateVariable.type
+            });
+          }
         }
         data.contracts.push(contract);
         // TODO: export the storage layout to the ./storageLayout/output.md
